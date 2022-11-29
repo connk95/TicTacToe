@@ -1,0 +1,15 @@
+#board {
+    display: flex;
+    flex-direction: row;
+}
+
+.boardColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.tile {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+}
