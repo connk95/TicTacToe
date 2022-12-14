@@ -9,8 +9,8 @@ const makeBoard = (() => {
 
     let turns = 0;
     const gameBoard = [];
-    const xBoard = [];
-    const oBoard = [];
+    let xBoard = [];
+    let oBoard = [];
     const tiles = document.getElementsByClassName("tile"); 
     for (i = 0; i < tiles.length; i++) {  
         let thisTile = document.getElementById(`${i}`);
@@ -30,9 +30,7 @@ const makeBoard = (() => {
                 gameBoard.push(thisTile.id);
                 oBoard.push(thisTile.id);
             };
-            console.log(xWin);
-            console.log(xBoard);
-            console.log(gameBoard);
+            winCheck();
         });
     };
 
@@ -47,11 +45,18 @@ const makeBoard = (() => {
         [2, 4, 6],
     ];
 
-    let xWin = xBoard.some(win => wins.includes(win));
+    winCheck = () => {
+        for (let i = 0; i < wins.length; i++) {
+            const winFormula = wins[i];
+            let xWin = winFormula.every((win) => xBoard.includes(win));
+            let oWin = winFormula.every((win) => oBoard.includes(win));
 
-    const oCheck = wins.every(win => {
-        return oBoard.includes(win);
-    });
+            if (xWin || oWin) {
+                return xWin ? "x" : "o";
+            };
+            console.log(xWin);
+        };
+    };
 
 })();
 
