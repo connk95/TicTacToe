@@ -27,7 +27,7 @@ const makeBoard = (() => {
         let thisTile = document.getElementById(`${i}`);
         tiles[i].addEventListener("click", () => {
             // x player moves
-            if (player1.turn == true && gameBoard.includes(thisTile.id) == false && winner == null) {
+            if (player1.turn == true && gameBoard.includes(thisTile.id) == false && winner == null && thisTile.innerHTML == "") {
                 thisTile.innerHTML = player1.sign; 
                 player1.turn = false;
                 player2.turn = true;
@@ -35,9 +35,10 @@ const makeBoard = (() => {
                 gameBoard.push(Number(thisTile.id));
                 player1.selectedTiles.push(Number(thisTile.id));
                 winCheck(player1.selectedTiles);
+                resetGame(winner);
             
             // o player moves
-            } else if (player2.turn == true && gameBoard.includes(thisTile.id) == false && winner == null) {
+            } else if (player2.turn == true && gameBoard.includes(thisTile.id) == false && winner == null && thisTile.innerHTML == "") {
                 thisTile.innerHTML = player2.sign; 
                 player2.turn = false;
                 player1.turn = true;
@@ -45,6 +46,7 @@ const makeBoard = (() => {
                 gameBoard.push(Number(thisTile.id));
                 player2.selectedTiles.push(Number(thisTile.id));
                 winCheck(player2.selectedTiles);
+                resetGame(winner);
                 
             };
         });
@@ -64,19 +66,51 @@ const makeBoard = (() => {
                 };
 
                 if (winTally === 3) {
-                    
                     if (turns % 2 !== 0) {
-                        winner = "x"
+                        winner = "x";
                     } else if (turns % 2 == 0) {
                         winner = "o"
-                    }
+                    };
+                } else if (winTally !== 3 && gameBoard.length == 9) {
+                    winner = "tie";
                 };
             };
-        };
+            resetGame(winner);
         console.log(winner);
         return winner;
+        };
     };
+
+    const resetGame = (winner) => {
+        if (winner !== null) {
+            const newGame = document.createElement("button");
+            newGame.innerHTML = "New Game";
     
+            const reset = document.getElementById("buttons");
+            reset.appendChild(newGame);
+    
+            newGame.addEventListener("click", () => {
+                for (i = 0; i < tiles.length; i++) {
+                    let thisTile = document.getElementById(`${i}`);
+                    thisTile.innerHTML = "";
+                };
+                
+                player1.selectedTiles = [];
+                player1.turn = true;
+                player2.selectedTiles = [];
+                player2.turn = false;
+                turns = 0;
+                winner = null;
+                gameBoard = [];
+                newGame.remove(newGame);
+
+                console.log(player1.turn);
+                console.log(gameBoard);
+                console.log(winner);
+                
+            });
+        };
+    };  
 })();
 
 
