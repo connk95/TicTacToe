@@ -48,6 +48,8 @@ const makeBoard = (() => {
                 winCheck(player2.selectedTiles);
                 resetGame(winner);
                 
+            } else {
+                console.log(winner);
             };
         });
     };
@@ -68,14 +70,16 @@ const makeBoard = (() => {
                 if (winTally === 3) {
                     if (turns % 2 !== 0) {
                         winner = "x";
+                        winTally = 0;
                     } else if (turns % 2 == 0) {
                         winner = "o"
+                        winTally = 0;
                     };
                 } else if (winTally !== 3 && gameBoard.length == 9) {
                     winner = "tie";
+                    winTally = 0;
                 };
             };
-            resetGame(winner);
         console.log(winner);
         return winner;
         };
@@ -100,14 +104,9 @@ const makeBoard = (() => {
                 player2.selectedTiles = [];
                 player2.turn = false;
                 turns = 0;
-                winner = null;
+                winner = null; //winner does not reset after button is pressed
                 gameBoard = [];
                 newGame.remove(newGame);
-
-                console.log(player1.turn);
-                console.log(gameBoard);
-                console.log(winner);
-                
             });
         };
     };  
