@@ -35,7 +35,9 @@ const makeBoard = (() => {
                 gameBoard.push(Number(thisTile.id));
                 player1.selectedTiles.push(Number(thisTile.id));
                 winCheck(player1.selectedTiles);
-                resetGame(winner);
+                if (winner !== null) {
+                    resetGame();
+                };
             
             // o player moves
             } else if (player2.turn == true && gameBoard.includes(thisTile.id) == false && winner == null && thisTile.innerHTML == "") {
@@ -46,7 +48,9 @@ const makeBoard = (() => {
                 gameBoard.push(Number(thisTile.id));
                 player2.selectedTiles.push(Number(thisTile.id));
                 winCheck(player2.selectedTiles);
-                resetGame(winner);
+                if (winner !== null) {
+                    resetGame();
+                };
                 
             } else {
                 console.log(winner);
@@ -85,30 +89,29 @@ const makeBoard = (() => {
         };
     };
 
-    const resetGame = (winner) => {
-        if (winner !== null) {
-            const newGame = document.createElement("button");
-            newGame.innerHTML = "New Game";
-    
-            const reset = document.getElementById("buttons");
-            reset.appendChild(newGame);
-    
-            newGame.addEventListener("click", () => {
-                for (i = 0; i < tiles.length; i++) {
-                    let thisTile = document.getElementById(`${i}`);
-                    thisTile.innerHTML = "";
-                };
-                
-                player1.selectedTiles = [];
-                player1.turn = true;
-                player2.selectedTiles = [];
-                player2.turn = false;
-                turns = 0;
-                winner = null; //winner does not reset after button is pressed
-                gameBoard = [];
-                newGame.remove(newGame);
-            });
-        };
+    const resetGame = () => {
+        
+        const newGame = document.createElement("button");
+        newGame.innerHTML = "New Game";
+
+        const reset = document.getElementById("buttons");
+        reset.appendChild(newGame);
+
+        newGame.addEventListener("click", () => {
+            for (i = 0; i < tiles.length; i++) {
+                let thisTile = document.getElementById(`${i}`);
+                thisTile.innerHTML = "";
+            };
+            
+            player1.selectedTiles = [];
+            player1.turn = true;
+            player2.selectedTiles = [];
+            player2.turn = false;
+            turns = 0;
+            winner = null; 
+            gameBoard = [];
+            newGame.remove(newGame);
+        });
     };  
 })();
 
