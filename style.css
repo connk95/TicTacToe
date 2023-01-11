@@ -1,11 +1,21 @@
 #body {
     display: flex;
     flex-direction: column;
+    width: auto;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
 
 #board {
     display: flex;
     flex-direction: row;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 12px;
+    background-color: rgb(245, 245, 245);
+    width: fit-content;
+    height: fit-content;
 }
 
 .boardColumn {
@@ -14,7 +24,101 @@
 }
 
 .tile {
-    border: 1px solid black;
+    display: flex;
     width: 100px;
     height: 100px;
+    font-size: 100px;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
 }
+
+#box0 {
+    border-bottom: 4px solid lightgrey;
+    border-right: 4px solid lightgrey;
+}
+
+#box1 {
+    border-bottom: 4px solid lightgrey;
+    border-right: 4px solid lightgrey;
+    border-top: 4px solid lightgrey;
+}
+
+#box2 {
+    border-top: 4px solid lightgrey;
+    border-right: 4px solid lightgrey;
+}
+
+#box3 {
+    border-bottom: 4px solid lightgrey;
+    border-right: 4px solid lightgrey;
+    border-left: 4px solid lightgrey;
+}
+
+#box4 {
+    border-bottom: 4px solid lightgrey;
+    border-right: 4px solid lightgrey;
+    border-top: 4px solid lightgrey;
+    border-left: 4px solid lightgrey;
+}
+
+#box5 {
+    border-left: 4px solid lightgrey;
+    border-right: 4px solid lightgrey;
+    border-top: 4px solid lightgrey;
+}
+
+#box6 {
+    border-bottom: 4px solid lightgrey;
+    border-left: 4px solid lightgrey;
+}
+
+#box7 {
+    border-left: 4px solid lightgrey;
+    border-bottom: 4px solid lightgrey;
+    border-top: 4px solid lightgrey;
+}
+
+#box8 {
+    border-top: 4px solid lightgrey;
+    border-left: 4px solid lightgrey;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: fit-content;
+    width: 340px;
+    margin: 10px;
+}
+
+#buttons > button {
+    padding: 8px 30px;
+    border-radius: 8px;
+    font-family: sans-serif;
+    font-weight: bold;
+    width: 160px;
+    font-size: 16px;
+    background-color: lightgray;
+    border: black 2px solid;
+}
+
+#wins {
+    display: flex;
+    flex-direction: row;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0 20px 0 20px;
+}
+
+.xTile {
+    font-size: 20px;
+}
+
+.oTile {
+
+}
+
+
